@@ -5,10 +5,7 @@ import com.example.slimsecret.repository.PersonRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -48,6 +45,12 @@ public class LogInSignUpController {
         }
 
         return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/user/{alias}")
+    public ResponseEntity<Person> getUserData(@PathVariable String alias) {
+        Person person = personRepository.findPersonByAlias(alias).get();
+        return new ResponseEntity<>(person, HttpStatus.OK);
     }
 
     public boolean ifExists(String alias) {
