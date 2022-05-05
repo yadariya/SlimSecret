@@ -15,11 +15,13 @@ public class LunchController {
     LunchRepository lunchRepository;
 
     @PostMapping("/lunch")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public Lunch createDinner(@RequestBody Lunch lunch) {
         return lunchRepository.save(lunch);
     }
 
     @PostMapping("/lunch/product/{alias}")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public Lunch addProductToDinner(@RequestBody Product product, @PathVariable String alias) {
         Lunch lunch = lunchRepository.findLunchByAlias(alias);
         List<Product> productList = lunch.getProductList();
@@ -29,6 +31,7 @@ public class LunchController {
     }
 
     @GetMapping("/lunch/{alias}")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public Lunch createDinner(@PathVariable String alias) {
         return lunchRepository.findLunchByAlias(alias);
     }

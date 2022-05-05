@@ -16,6 +16,7 @@ public class LogInSignUpController {
     private final PersonRepository personRepository;
 
     @PostMapping("/signup")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity<String> createUser(@RequestBody Person person) {
         if (ifExists(person.getAlias())) {
             return new ResponseEntity<>("User already exist", HttpStatus.BAD_REQUEST);
@@ -25,6 +26,7 @@ public class LogInSignUpController {
     }
 
     @PutMapping("/update")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity<String> updateUser(@RequestBody Person person) {
         if (ifExists(person.getAlias())) {
             Optional<Person> person_new = personRepository.findPersonByAlias(person.getAlias());
@@ -48,6 +50,7 @@ public class LogInSignUpController {
     }
 
     @GetMapping("/user/{alias}")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity<Person> getUserData(@PathVariable String alias) {
         Person person = personRepository.findPersonByAlias(alias).get();
         return new ResponseEntity<>(person, HttpStatus.OK);
