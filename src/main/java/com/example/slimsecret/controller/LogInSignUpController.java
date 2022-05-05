@@ -38,6 +38,7 @@ public class LogInSignUpController {
     }
 
     @PostMapping("/login")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity<Person> logInUser(@RequestBody Person person_) {
         if (ifExists(person_.getAlias())) {
             Person person = personRepository.findPersonByAlias(person_.getAlias()).get();
