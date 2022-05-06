@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-@RestController
 @AllArgsConstructor
+@RestController
 public class LogInSignUpController {
 
     private final PersonRepository personRepository;
